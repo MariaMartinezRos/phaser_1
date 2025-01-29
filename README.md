@@ -1,6 +1,4 @@
-# Phaser Testing:
-
-# _Visual Novel_
+# Phaser Testing: _Visual Novel_
 
 ## Description
 
@@ -13,7 +11,8 @@ A simple proyect to test and learn Phaser.
 
 ## References
 
-"Parents, teachers, government - they all teach you how to live the dreary, deadening life of a slave, but nobody teaches you how to live normally."
+> Parents, teachers, government - they all teach you how to live the dreary, deadening life of a slave, but nobody teaches you how to live normally.
+
 **In the Miso Soup - _Ryū Murakami_**
 
 Developed by Maria.
