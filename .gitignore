@@ -1,0 +1,15 @@
+# Environment files
+.env
+
+# IDE/editor files
+.vscode/
+.idea/
+*.iml
+
+# Temporary files
+/tmp/
+/.cache/
+
+# OS-generated files
+Thumbs.db
+.DS_Store
