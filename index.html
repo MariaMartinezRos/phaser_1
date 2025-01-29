@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Otome</title>
+    <style>
+      #game-container {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+      }
+    </style>
+    <script src="assets/js/phaser.min.js"></script>
+  </head>
+  <body>
+    <div class="container" id="game-container"></div>
+
+    <script src="src/main.js" type="module"></script>
+  </body>
+</html>
+
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>First Otome Game</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var config = {
+        type: Phaser.AUTO,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        scene: {
+          preload: preload,
+          create: create,
+          update: update,
+        },
+      };
+
+      var game = new Phaser.Game(config);
+
+      function preload() {
+        this.load.image("sky", "assets/sky.png");
+        this.load.image("blue", "assets/blue.png");
+        this.load.image("pink", "assets/pink.png");
+      }
+
+      function create() {
+        //CIELO
+        this.add
+          .image(0, 0, "sky")
+          .setOrigin(0, 0)
+          .setDisplaySize(
+            this.sys.game.config.width,
+            this.sys.game.config.height
+          );
+
+        // Centra el texto en el canvas
+        const centerX = this.sys.game.config.width / 2;
+        const centerY = this.sys.game.config.height / 2;
+
+        // BOTON START
+        const start = this.add.text(centerX, centerY, "Play Game", {
+          fontFamily: "Arial",
+          fontSize: "32px",
+          color: "#ffff00",
+          backgroundColor: "#0000ff",
+          padding: { x: 16, y: 8 },
+          align: "center",
+        });
+
+        start.setOrigin(0.5);
+        start.setInteractive({ useHandCursor: true });
+
+        start.on("pointerover", () => {
+          start.setBackgroundColor("#00ff00");
+        });
+
+        start.on("pointerout", () => {
+          start.setBackgroundColor("#0000ff");
+        });
+
+        //CAMBIAR ESCENA
+        start.on("pointerdown", () => {
+          start.setBackgroundColor("#ff0000");
+          this.scene.start("scenes/scene_1");
+        });
+      }
+
+      function update() {}
+    </script>
+  </body>
+</html> -->
