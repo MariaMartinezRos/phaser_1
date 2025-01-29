@@ -1,6 +1,7 @@
 import Phaser from "./lib/phaser.js";
 import { scene_1 } from "./scenes/scene_1.js";
 import { scene_2 } from "./scenes/scene_2.js";
+import { scene_3 } from "./scenes/scene_3.js";
 
 var game;
 var canvas;
@@ -24,7 +25,7 @@ window.onload = function () {
         debug: false,
       },
     },
-    scene: [scene_1, scene_2],
+    scene: [scene_1, scene_2, scene_3],
   };
 
   game = new Phaser.Game(game_config);

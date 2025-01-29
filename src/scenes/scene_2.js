@@ -126,6 +126,9 @@ export class scene_2 extends Phaser.Scene {
       // Hide the next button if currentTextIndex is the last index
       if (currentTextIndex === 0) {
         next.setAlpha(0);
+        setTimeout(() => {
+          this.scene.start("scene_3");
+        }, 1000);
       } else {
         next.setAlpha(1);
       }
@@ -152,19 +155,34 @@ export class scene_2 extends Phaser.Scene {
         next.setAlpha(1);
       }
 
-      // If the text Array is in position 0 per 3 seconds, then the scene changes
-      if (currentTextIndex === 0 && auxiliar) {
-        this.add.tween({
-          targets: pixelated,
-          duration: 700,
-          amount: 40,
-          onComplete: () => {
-            this.cameras.main.fadeOut(100);
-            this.scene.start("scene_3");
-          },
-        });
-      }
+      // If the text Array is in position 0, then the scene changes
+      // if (currentTextIndex === 0) {
+      //   this.add.tween({
+      //     targets: pixelated,
+      //     duration: 700,
+      //     amount: 40,
+      //     onComplete: () => {
+      //       this.cameras.main.fadeOut(100);
+      //       this.scene.start("scene_3");
+      //     },
+      //   });
+      // }
     });
+
+    //when the text dialogue is finished, if you click anywehere on the screen, it will change the scene
+    // if (currentTextIndex === 0) {
+    //   sky.on("pointerdown", () => {
+    //     this.add.tween({
+    //       targets: pixelated,
+    //       duration: 700,
+    //       amount: 40,
+    //       onComplete: () => {
+    //         this.cameras.main.fadeOut(100);
+    //         this.scene.start("scene_3");
+    //       },
+    //     });
+    //   });
+    // }
   }
 }
 

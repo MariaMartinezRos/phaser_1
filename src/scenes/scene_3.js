@@ -13,10 +13,10 @@ export class scene_3 extends Phaser.Scene {
       duration: 700,
       amount: -1,
     });
-    this.load.image("ciudad", "assets/ciudad.png");
+    this.load.image("good_sky", "assets/good_sky.jpg");
     this.load.image("blue", "assets/blue.png");
-    this.load.image("pink", "assets/pink.png");
     this.load.image("dialogue", "assets/dialogue.png");
+    this.load.image("dialogue_blue", "assets/dialogue_blue.png");
   }
 
   create() {
@@ -25,7 +25,7 @@ export class scene_3 extends Phaser.Scene {
 
     //CIELO
     this.add
-      .image(0, 0, "ciudad")
+      .image(0, 0, "good_sky")
       .setOrigin(0, 0)
       .setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
 
@@ -33,10 +33,22 @@ export class scene_3 extends Phaser.Scene {
     const centerX = this.sys.game.config.width / 2;
     const centerY = this.sys.game.config.height / 2;
 
+    // PERSONAJES
+    const blue = this.add.image(centerX + 400, centerY - 50, "blue");
+    blue.setScale(1);
+    blue.setAngle(0);
+    blue.setAlpha(0);
+    blue.setDepth(10);
+
     // DIALOGO
-    const dialogue = this.add.image(centerX, centerY + 200, "dialogue");
-    dialogue.setScale(1.6);
-    dialogue.setAlpha(0); // Initially hide the dialogue
+    const dialogue_blue = this.add.image(
+      centerX,
+      centerY + 200,
+      "dialogue_blue"
+    );
+    dialogue_blue.setScale(1.6);
+    dialogue_blue.setAlpha(0); // Initially hide the dialogue_blue
+    dialogue_blue.setDepth(20);
 
     // Interactive Text
     const next = this.add.text(centerX + 400, centerY + 250, "Next", {
@@ -47,6 +59,7 @@ export class scene_3 extends Phaser.Scene {
     next.setOrigin(0.5);
     next.setAlpha(0); // Initially hide the text
     next.setInteractive();
+    next.setDepth(30);
 
     // Change text color on hover
     next.on("pointerover", () => {
@@ -66,6 +79,7 @@ export class scene_3 extends Phaser.Scene {
     back.setOrigin(0.5);
     back.setAlpha(0); // Initially hide the text
     back.setInteractive();
+    back.setDepth(30);
 
     // Change text color on hover
     back.on("pointerover", () => {
@@ -76,25 +90,15 @@ export class scene_3 extends Phaser.Scene {
       back.setColor("#0000ff");
     });
 
-    // Show the dialogue and interactive text after 1 seconds
+    // Show the dialogue_blue and interactive text after 1 seconds
     setTimeout(() => {
-      dialogue.setAlpha(1);
+      dialogue_blue.setAlpha(1);
       next.setAlpha(1);
       auxiliar = true;
     }, 1500);
 
-    // Array of text strings
-    const textArray = [
-      "'  CRASH   '",
-      "You take a short walk around the town.",
-      "This is the last day of the summer, before classes start.",
-      "...",
-      "Parents, teachers, government - they all teach you",
-      "how to live the dreary, deadening life of a slave,",
-      "but nobody teaches you how to live normally.",
-    ];
+    const textArray = [" ", "I'm so sorry! Are you okay??"];
 
-    // Current text index
     let currentTextIndex = 0;
 
     const text = this.add.text(
@@ -105,66 +109,48 @@ export class scene_3 extends Phaser.Scene {
         fontFamily: "Arial",
         fontSize: "32px",
         color: "#ffff00",
-        backgroundColor: "#000000",
         padding: { x: 20, y: 20 },
         align: "center",
       }
     );
     text.setOrigin(0.5);
-    text.setAlpha(0); // Initially hide the text
+    text.setAlpha(0);
+    text.setDepth(30);
 
-    // Show the text when the next button is clicked
     next.on("pointerdown", () => {
       text.setAlpha(1);
       currentTextIndex = (currentTextIndex + 1) % textArray.length;
       text.setText(textArray[currentTextIndex]);
-      // Show the back button if currentTextIndex is greater than 1
       if (currentTextIndex === 1) {
         back.setAlpha(0);
       } else {
         back.setAlpha(1);
+        blue.setAlpha(1); //BLUE APPEARS
       }
 
-      // Hide the next button if currentTextIndex is the last index
       if (currentTextIndex === 0) {
         next.setAlpha(0);
+        blue.setAlpha(1); //BLUE APPEARS
       } else {
         next.setAlpha(1);
       }
     });
 
-    // Show the text when the back button is clicked
     back.on("pointerdown", () => {
       text.setAlpha(1);
       currentTextIndex =
         (currentTextIndex - 1 + textArray.length) % textArray.length;
       text.setText(textArray[currentTextIndex]);
 
-      // Hide the back button if currentTextIndex is 1
       if (currentTextIndex === 1) {
         back.setAlpha(0);
       } else {
         back.setAlpha(1);
       }
-
-      // Show the next button if currentTextIndex is not the last index
       if (currentTextIndex === 0) {
         next.setAlpha(0);
       } else {
         next.setAlpha(1);
-      }
-
-      // If the text Array is in position 0 per 3 seconds, then the scene changes
-      if (currentTextIndex === 0 && auxiliar) {
-        this.add.tween({
-          targets: pixelated,
-          duration: 700,
-          amount: 40,
-          onComplete: () => {
-            this.cameras.main.fadeOut(100);
-            this.scene.start("scene_3");
-          },
-        });
       }
     });
   }
