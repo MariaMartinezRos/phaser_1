@@ -21,6 +21,10 @@ export class scene_4 extends Phaser.Scene {
       frameWidth: 53, // Ancho de cada frame
       frameHeight: 97, // Altura de cada frame
     });
+    this.load.spritesheet("blue", "assets/spritesheet_blue.png", {
+      frameWidth: 53,
+      frameHeight: 97,
+    });
   }
 
   create() {
@@ -39,6 +43,16 @@ export class scene_4 extends Phaser.Scene {
 
     // PERSONAJES
     // Crear animaciones
+
+    //BLUE
+    this.anims.create({
+      key: "idle-blue",
+      frames: [{ key: "blue", frame: 0 }],
+      frameRate: 1,
+      repeat: -1,
+    });
+
+    //YELLOW
     this.anims.create({
       key: "idle",
       frames: [{ key: "yellow", frame: 0 }],
@@ -88,7 +102,11 @@ export class scene_4 extends Phaser.Scene {
 
     // Agregar personaje al juego
     this.yellow = this.physics.add.sprite(100, 200, "yellow");
+    this.yellow.angle = -50; // Rotar 45 grados en sentido horario
     this.yellow.play("idle");
+
+    this.blue = this.physics.add.sprite(1300, 430, "blue");
+    this.blue.play("idle-blue");
 
     // // Habilitar teclas de movimiento
     this.cursors = this.input.keyboard.createCursorKeys();
