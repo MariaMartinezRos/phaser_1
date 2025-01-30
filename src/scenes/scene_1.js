@@ -17,6 +17,10 @@ export class scene_1 extends Phaser.Scene {
   }
 
   create() {
+    ///////////////////////////////////////////////
+    this.scene.start("scene_4");
+    ///////////////////////////////////////////////
+
     const pixelated = this.cameras.main.postFX.addPixelate(-1);
     //CIELO
     this.add

@@ -127,7 +127,16 @@ export class scene_2 extends Phaser.Scene {
       if (currentTextIndex === 0) {
         next.setAlpha(0);
         setTimeout(() => {
-          this.scene.start("scene_3");
+          this.add.tween({
+            targets: pixelated,
+            duration: 700,
+            amount: 40,
+            onComplete: () => {
+              this.cameras.main.fadeOut(100);
+              this.scene.start("scene_3");
+            },
+          });
+          // this.scene.start("scene_3");
         }, 1000);
       } else {
         next.setAlpha(1);
