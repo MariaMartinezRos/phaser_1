@@ -15,6 +15,8 @@ export class scene_4 extends Phaser.Scene {
       amount: -1,
     });
     this.load.image("ciudad_plano", "assets/ciudad_plano.png");
+    this.load.image("ciudad_plano_arbol", "assets/ciudad_plano_arbol.png");
+
     // this.load.image("sprite_blue", "assets/sprite_blue.png");
     this.load.image("dialogue", "assets/dialogue.png");
     this.load.image("dialogue_sprite_blue", "assets/dialogue_sprite_blue.png");
@@ -136,6 +138,12 @@ export class scene_4 extends Phaser.Scene {
 
     // // Habilitar teclas de movimiento
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    // ARBOL
+    this.add
+      .image(0, 0, "ciudad_plano_arbol")
+      .setOrigin(0, 0)
+      .setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
   }
   update() {
     if (this.locked) {
