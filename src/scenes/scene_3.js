@@ -138,6 +138,7 @@ export class scene_3 extends Phaser.Scene {
             amount: 40,
             onComplete: () => {
               this.cameras.main.fadeOut(100);
+              blue.setAlpha(0);
               this.scene.start("scene_4");
             },
           });
